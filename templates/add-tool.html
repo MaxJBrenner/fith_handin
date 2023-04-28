@@ -1,0 +1,100 @@
+{% extends 'base.html' %} {% block head %}
+<link
+  rel="stylesheet"
+  href="{{ url_for('static', filename='css/main.css') }}"
+/>
+<style>
+  form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 50px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background-color: #4caf50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  button:hover {
+    background-color: #3e8e41;
+  }
+  .back {
+    float: right;
+  }
+</style>
+<title>Task Master</title>
+{% endblock %} {% block body %}
+<h1>Add a new tool</h1>
+
+<form action="/" method="POST" onsubmit="return validateForm()">
+  Name: <input type="text" id="name" name="name" /><br />
+  Description:
+  <input type="text" id="description" name="description" /><br />
+  Content:
+  <input type="text" id="content" name="content" /><br />
+  Link:
+  <input type="text" id="link" name="link" /><br />
+
+  <br />
+
+  <a href="/">
+    <p class="back">Go Back</p>
+  </a>
+  <button>Add Tool</button>
+</form>
+<script>
+  function validateForm() {
+    const name = document.forms[0]["name"].value;
+    const description = document.forms[0]["description"].value;
+    const content = document.forms[0]["content"].value;
+    const link = document.forms[0]["link"].value;
+
+    if (name == "") {
+      alert("Name must be filled out");
+      return false;
+    }
+
+    if (description == "") {
+      alert("Description must be filled out");
+      return false;
+    }
+
+    if (content == "") {
+      alert("Content must be filled out");
+      return false;
+    }
+
+    if (link == "") {
+      alert("Link must be filled out");
+      return false;
+    }
+
+    return true;
+  }
+</script>
+{% endblock %}
